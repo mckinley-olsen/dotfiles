@@ -1,0 +1,70 @@
+"3.10.1 (created: 2015/08/25 00:41:59)
+
+highlight Bell border: none; background-color: #d0d0d0;
+highlight Boolean color: Orchid;
+highlight CmdLine color: #d0d0d0; background: #0c0c0c; font-size: 14px; -moz-transition: all 0.25s; font-size: 12pt; color: #395475; background-color: #e0e0e0;
+highlight CompDesc color: #a0a0d0; width: 50%;
+highlight CompDesc[selected] background:#2C001E;color:#00cc22
+highlight CompGroup background: rgba(28,28,28,0.25);
+highlight CompItem font-size: 12px;
+highlight CompItem[selected] font-weight: bold; color: #395475 !important; background-color: #ffffff !important;
+highlight CompResult color: #dddddd; width: 45%; overflow: hidden;
+highlight CompTitle font-weight: bold; background: -moz-linear-gradient(19% 75% 90deg, #0c0c0c, #0a0a0a, #1c1c1c 100%);
+highlight CompTitle>* color: #a0a0d0; padding: 0 0.5ex;
+highlight ContentSeparator border: none; display: -moz-box;
+highlight Enabled color: #d0ffd0;
+highlight ErrorMsg font-size: 12pt; font-weight: bold; color: #ffffff; background-color: #ff6600;
+highlight Filter border: 1px solid #e0e0e0; border-radius:8px; color: #395475; background-color: #ffffff;
+highlight FrameIndicator background-color: #5566bb; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+highlight Function color: SkyBlue;
+highlight Hint font-family: monospace; font-size: 14px; font-weight: normal; color: #dddddd; background-color: #1c1c1c; border-color: #1c1c1c; border-width: 0px; border-style: solid; padding: 0px 5px 0px 5px; color: #395475; background-color: #ffff66;
+highlight HintActive color: #ffffff; background-color: #ff6600;
+highlight HintElem color: #ffffff; background-color: #395475;
+highlight Indicator color: DodgerBlue;
+highlight InfoMsg font-size: 12pt; color: #ffff66; background-color: #395475;
+highlight Keyword color: khaki;
+highlight LineNr color: #ffd0d0; background: #1c1c1c; font-size: 12px;
+highlight Mapping color: orchid;
+highlight Message white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block; font-size: 12px;
+highlight ModeMsg font-size: 12pt; color: #ffffff; background-color: #395475;
+highlight MoreMsg font-size: 12pt; color: #ffff66; background-color: #395475;
+highlight NonText color: #a0a0d0; min-height: 16px; padding-left: 2px;
+highlight Normal font-size: 14pt; color: #ffffff; background-color: #395475;
+highlight Null color: CornflowerBlue;
+highlight Number color: Orchid;
+highlight Object color: Khaki;
+highlight Preview color: #a0a0d0; font-size: 12px;
+highlight Prompt background: url("chrome://liberator/skin/prompt.png"); width: 10px; background-position: center; background-repeat: no-repeat; background-color: #e0e0e0; margin-right: 2px;
+highlight PromptText color: #e0e0e0; background-color: #395475;
+highlight Question color: #a0a0d0; background: #1c1c1c; font-size: 12px;
+highlight StatusLine font-size: 12pt; font-weight: normal; color: #395475; background-color: #e0e0e0;
+highlight String color: Orchid;
+highlight TabNumber font-weight: bold; color: white; text-align: center;
+highlight Tag color: #a0a0d0; background: #1c1c1c; font-size: 12px;
+highlight Title color: #d0d0ff;
+highlight URL color: inherit;
+highlight WarningMsg font-size: 12pt; color: #ffffff; background-color: #395475;
+set "editor=urxvt -e nvim"
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+set animations=true
+style! -name=indigo-feed-button chrome://* <<EOF
+#feed-button {
+        list-style-image: url("chrome://browser/skin/feeds/feedIcon16.png") !important;
+        -moz-image-region: auto !important;
+        border: none !important;
+        min-width: 0 !important;
+    }
+EOF
+style! -name=indigo-sbmcommentsviewer chrome://* <<EOF
+.liberator-sbmcommentsviewer-content {
+        padding: 0 !important;
+        border: none !important;
+    }
+EOF
+style! -name=statusbar chrome://* <<EOF
+#status-bar statusbarpanel { padding: 0 1px !important; }
+statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
+EOF
+source! /home/mckinley/.vimperatorrc.local
+
+" vim: set ft=vimperator:
