@@ -36,6 +36,8 @@ set $right l
 set $mod Mod4
 
 # kill focused window
+bindsym $mod+m move workspace to output left
+
 bindsym $mod+q kill
 
 # Font for window titles. Will also be used by the bar unless a different font

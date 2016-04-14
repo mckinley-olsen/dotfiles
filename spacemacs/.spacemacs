@@ -33,10 +33,7 @@ values."
      git
      yaml
      dockerfile
-     erlang
-     elixir
      elm
-     pdf-tools
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -48,11 +45,8 @@ values."
      scala
      javascript
      eyebrowse
-     themes-megapack
      auto-completion
-     java
-     ;;nixos
-     )
+     java)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
@@ -99,13 +93,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(sanityinc-solarized-light
-                         spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+                         sanityinc-solarized-dark)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line

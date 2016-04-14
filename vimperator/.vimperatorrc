@@ -1,4 +1,4 @@
-"3.10.1 (created: 2015/08/25 00:41:59)
+"3.12.0 (created: 2016/02/28 22:07:56)
 
 highlight Bell border: none; background-color: #d0d0d0;
 highlight Boolean color: Orchid;
@@ -46,7 +46,6 @@ highlight URL color: inherit;
 highlight WarningMsg font-size: 12pt; color: #ffffff; background-color: #395475;
 set "editor=urxvt -e nvim"
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
-set animations=true
 style! -name=indigo-feed-button chrome://* <<EOF
 #feed-button {
         list-style-image: url("chrome://browser/skin/feeds/feedIcon16.png") !important;
@@ -66,5 +65,7 @@ style! -name=statusbar chrome://* <<EOF
 statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
 EOF
 source! /home/mckinley/.vimperatorrc.local
+
+set "gui=addons,nobookmarks,nomenu,nonavigation,notabs"
 
 " vim: set ft=vimperator:
