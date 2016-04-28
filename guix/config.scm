@@ -1,8 +1,9 @@
-;; This is an operating system configuration template
-;; for a "bare bones" setup, with no X11 display server.
-
 (use-modules (gnu)
-             (gnu system nss))
+             (gnu system nss)
+             (gnu services xorg)
+             (guix monads)
+             (guix store)
+             (srfi srfi-1))
 
 (use-service-modules desktop)
 (use-package-modules admin
@@ -12,6 +13,10 @@
                      emacs
                      vim
                      wm
+                     lxde
+                     pulseaudio
+                     gstreamer
+
                      xorg
                      version-control
                      gnuzilla
@@ -20,7 +25,6 @@
                      package-management
                      suckless
                      certs
-                     lxde
                      zsh
                      wicd
                      terminals
@@ -35,7 +39,6 @@
                      texinfo
                      graphviz
                      pkg-config)
-
 
 #!
 copied from mark-weaver
@@ -58,6 +61,24 @@ copied from mark-weaver
                                             #$grep " Caps_Lock | "
                                             #$sed " s/Caps_Lock/Control/g | "
                                             #$loadkeys))))))))))
+!#
+
+#!
+I can't get this section to work
+(define monitor-description
+  "Section \"Monitor\"
+    Identifier \"Monitor0\"
+    DisplaySize 346 194
+  EndSection")
+
+(define (my-slim-service)
+  (mlet* %store-monad (
+                       (config (xorg-configuration-file
+                               #:extra-config (list monitor-description)))
+                      (startx (xorg-start-command
+                               #:configuration-file config))
+                      )
+    (slim-service #:startx startx)))
 !#
 
 (define zsh-location
@@ -106,7 +127,6 @@ copied from mark-weaver
   ;; Globally-installed packages.
   (packages (cons* emacs
                    zsh
-                   stow
                    i3-wm
                    dmenu
                    xrandr
@@ -117,10 +137,8 @@ copied from mark-weaver
                    wicd
                    xmodmap
                    i3status
-                   ;i3blocks
                    termite
                    stow
-                   git
                    arandr
                    lxrandr
                    nss-certs
@@ -133,6 +151,13 @@ copied from mark-weaver
                    font-gnu-freefont-ttf
                    xbacklight
                    irssi
+
+                   ;audio
+                   pulseaudio
+                   pavucontrol
+                   gstreamer
+                   gst-plugins-bad
+                   gst-plugins-ugly
 
                    ;; dependencies for anti-caps-lock-service
                    ;bash
@@ -148,6 +173,48 @@ copied from mark-weaver
                    pkg-config
                    gnu-make
                    nix
+                   xrdb
                    %base-packages))
+#!
+  (services (cons*
+              (slim-service #:startx (xorg-start-command
+                                      #:configuration-file (xorg-configuration-file
+                                                            #:extra-config (list
+"Section \"Monitor\"
+  Identifier \"Monitor0\"
+  DisplaySize 337 190 #337.82 190.5
+EndSection
 
-  (services %desktop-services))
+Section \"Screen\"
+  Identifier \"Screen0\"  #Collapse Monitor and Device section to Screen section
+  Device \"nvidia\"
+  Monitor \"Monitor0\"
+  DefaultDepth 24 #Choose the depth (16||24)
+  SubSection \"Display\"
+    Depth 24
+    Modes \"3840x2160_60.00\" #Choose the resolution
+  EndSubSection
+EndSection
+
+Section \"Device\"
+  Identifier \"intel\"
+  Driver \"intel\"
+  BusID \"PCI:0:2:0\"
+  #Option \"AccelMethod\" \"SNA\"
+EndSection
+
+Section \"Device\"
+  Identifier \"nvidia\"
+  Driver \"nouveau\"
+  BusID \"PCI:2:0:0\"
+  #Option \"ConstrainCursor\" \"off\"
+EndSection
+"))))
+              ;(my-slim-service)
+              (remove (lambda (service)
+                        (eq? (service-kind service)
+                          slim-service-type))
+                      %desktop-services)))
+!#
+  (services %desktop-services)
+  )
