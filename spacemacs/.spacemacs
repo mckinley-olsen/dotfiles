@@ -42,7 +42,7 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
-     scala
+     (scala :variables scala-enable-eldoc t)
      javascript
      eyebrowse
      auto-completion

@@ -220,7 +220,7 @@ client.focused		#000000 $red		$white
 client.unfocused	#000000 $unfocused	$white
 client.focused_inactive #000000 $unfocused	$white
 
-exec wicd-client
+exec nm-applet
 
 #bar {
 #	position bottom
