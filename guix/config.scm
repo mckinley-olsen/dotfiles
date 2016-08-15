@@ -1,6 +1,8 @@
+
 (use-modules (gnu)
              (gnu system nss)
              (gnu services xorg)
+             (gnu services networking)
              (guix monads)
              (guix store)
              (srfi srfi-1))
@@ -16,6 +18,7 @@
                      lxde
                      pulseaudio
                      gstreamer
+                     gtk
 
                      xorg
                      version-control
@@ -26,11 +29,12 @@
                      suckless
                      certs
                      zsh
-                     wicd
                      terminals
                      fonts
                      irc
+                     screen
                      ghostscript
+                     tls
 
                      ;development tools
                      base
@@ -128,19 +132,17 @@ I can't get this section to work
   (packages (cons* emacs
                    zsh
                    i3-wm
-                   dmenu
+                   rofi
                    xrandr
                    vim
                    tcpdump
                    myrepos
                    icecat
-                   wicd
                    xmodmap
                    i3status
                    termite
                    stow
                    arandr
-                   lxrandr
                    nss-certs
                    isc-dhcp
                    epiphany
@@ -150,7 +152,12 @@ I can't get this section to work
                    font-dejavu
                    font-gnu-freefont-ttf
                    xbacklight
+                   screen
                    irssi
+                   network-manager-applet
+                   setxkbmap
+                   nix
+                   gnutls
 
                    ;audio
                    pulseaudio
@@ -159,21 +166,12 @@ I can't get this section to work
                    gst-plugins-bad
                    gst-plugins-ugly
 
+                   xrdb
+
                    ;; dependencies for anti-caps-lock-service
                    ;bash
                    ;kbd
                    ;sed
-
-                   ; development packages; see: https://www.gnu.org/software/guix/manual/html_node/Building-from-Git.html#Building-from-Git
-                   autoconf
-                   automake
-                   gnu-gettext
-                   texinfo
-                   graphviz
-                   pkg-config
-                   gnu-make
-                   nix
-                   xrdb
                    %base-packages))
 #!
   (services (cons*
@@ -215,6 +213,11 @@ EndSection
                         (eq? (service-kind service)
                           slim-service-type))
                       %desktop-services)))
-!#
+  ;network-manager doesn't seem to work correctly
+  (services (cons (network-manager-service) (remove (lambda (service)
+                      (eq? (service-kind service)
+                           wicd-service-type))
+                    %desktop-services)))
+  !#
   (services %desktop-services)
-  )
+)
