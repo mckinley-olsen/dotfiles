@@ -62,11 +62,8 @@ floating_modifier $mod
 bindsym $mod+Return exec termite
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec rofi -show run -lines 4 -eh 2
+bindsym $mod+Tab exec rofi -show window -lines 4 -eh 2
 
 # change focus
 bindsym $mod+$left focus left
@@ -220,7 +217,7 @@ client.focused		#000000 $red		$white
 client.unfocused	#000000 $unfocused	$white
 client.focused_inactive #000000 $unfocused	$white
 
-exec nm-applet
+exec wicd-client
 
 #bar {
 #	position bottom

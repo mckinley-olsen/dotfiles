@@ -1,6 +1,6 @@
 [options]
 scrollback_lines = 10000
-font             = Inconsolata Regular
+font             = Terminus
 clickable_url    = true
 browser          = icecat
 allow_bold       = true

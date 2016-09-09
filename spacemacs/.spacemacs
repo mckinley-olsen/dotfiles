@@ -43,6 +43,7 @@ values."
      ;; syntax-checking
      ;; version-control
      (scala :variables scala-enable-eldoc t)
+     scheme
      javascript
      eyebrowse
      auto-completion
@@ -220,6 +221,17 @@ user code."
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
 
+  ;; (setq frame-title-format
+  ;;       '(buffer-file-name "%f" ("%b"))
+  ;;       ;mouse-autoselect-window t
+  ;;                                       ;display-time-24hr-format t
+  ;;       )
+
+  ;;for just project name when available
+  (setq frame-title-format '(:eval (if (string= (projectile-project-name) "-") "" (format "%s" (projectile-project-name)))))
+
+  (setq-default geiser-guile-load-path '("~/projects/guix"))
+
   (global-company-mode)
   ;(add-hook 'prog-mode-hook #'linum-relative-toggle)
   "Configuration function for user code.
@@ -229,3 +241,22 @@ layers configuration. You are free to put any user code."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(paradox-github-token t)
+ '(safe-local-variable-values
+   (quote
+    ((bug-reference-bug-regexp . "<https?://\\(debbugs\\|bugs\\)\\.gnu\\.org/\\([0-9]+\\)>")
+     (eval modify-syntax-entry 43 "'")
+     (eval modify-syntax-entry 36 "'")
+     (eval modify-syntax-entry 126 "'")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
