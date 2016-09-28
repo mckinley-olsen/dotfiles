@@ -12,7 +12,6 @@
                      linux
                      firmware
                      linux-nonfree
-                     emacs
                      vim
                      wm
                      lxde
@@ -129,8 +128,7 @@ I can't get this section to work
                %base-user-accounts))
 
   ;; Globally-installed packages.
-  (packages (cons* emacs
-                   zsh
+  (packages (cons* zsh
                    i3-wm
                    rofi
                    xrandr
